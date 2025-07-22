@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HUNG VUONG Profile</title>
+  <title>VUONG PROFILE</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
     body {
       margin: 0;
-      background: radial-gradient(#111, #000);
+      background: url('https://banobagi.vn/wp-content/uploads/2025/05/gai-anime-mac-bikini-12.jpg') no-repeat center center fixed;
+      background-size: cover;
       font-family: 'Orbitron', sans-serif;
       color: cyan;
       text-align: center;
@@ -38,13 +39,12 @@
     }
 
     .logo {
-      width: 160px;
-      height: 160px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       border: 4px solid cyan;
       box-shadow: 0 0 20px cyan, 0 0 40px #0ff;
       background: white;
-      object-fit: cover;
     }
 
     h1 {
@@ -149,62 +149,71 @@
 </head>
 <body>
   <div class="container">
-    <div class="fps" id="fps-counter">FPS: --</div>
+    <div class="fps">FPS: 99.9</div>
+
     <div class="profile">
-      <img src="https://banobagi.vn/wp-content/uploads/2025/04/anh-anime-5-1.jpg" alt="Logo" class="logo" />
-      <h1>HUNG VUONG</h1>
+      <img src="https://cdn.discordapp.com/attachments/1266182121047986342/1397051452354199603/IMG_1749973203749_1749973241894.jpg" alt="Logo" class="logo" />
+      <h1>VUONG TRUM MAI DAM</h1>
+
       <button class="neon-btn">Dịch vụ</button>
-      <button class="neon-btn">CHAT SÉT-DÂM GAY</button>
+      <button class="neon-btn">CHAT SEX - CALL ĐẦM</button>
 
       <div class="links">
-        <button onclick="window.open('https://www.facebook.com/nguyen.hung.vuong.759003', '_blank')">Facebook</button>
-        <button onclick="window.open('https://zalo.me/081603870', '_blank')">Zalo</button>
-        <button onclick="window.open('https://www.tiktok.com/@metagaya1?_t=ZS-8yEEZqJyhur&_r=1', '_blank')">TikTok</button>
+        <button onclick="window.open('https://www.facebook.com/nguyen.hung.vuong.759003', '_blank')">FACEBOOK</button>
+        <button onclick="window.open('https://zalo.me/081603870', '_blank')">ZALO</button>
+        <button onclick="window.open('https://www.tiktok.com/@metagaya1?_t=ZS-8yEEZqJyhur&_r=1', '_blank')">TIKTOK</button>
       </div>
     </div>
   </div>
 
-  <!-- Nút nhạc -->
   <button class="music-btn" onclick="toggleMusic()">Phát nhạc</button>
 
-  <!-- Audio -->
   <audio id="bg-music" loop preload="auto">
     <source src="https://media.vocaroo.com/mp3/16cxaqpVQIn3" type="audio/mp3">
     Trình duyệt của bạn không hỗ trợ phát nhạc.
   </audio>
 
-  <!-- Script FPS + hiệu ứng dot + nhạc -->
   <script>
-    // FPS giả lập
-    let fpsEl = document.getElementById("fps-counter");
-    let lastLoop = new Date();
-    function updateFPS() {
-      const thisLoop = new Date();
-      const fps = Math.round(1000 / (thisLoop - lastLoop));
-      lastLoop = thisLoop;
-      fpsEl.textContent = "FPS: " + fps;
-    }
-    setInterval(updateFPS, 100);
-
-    // Hiệu ứng dot rơi
-    setInterval(() => {
+    function createDot() {
       const dot = document.createElement("div");
-      dot.className = "dot";
+      dot.classList.add("dot");
+
       dot.style.left = Math.random() * window.innerWidth + "px";
       dot.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      dot.style.width = dot.style.height = (Math.random() * 6 + 4) + "px";
+      dot.style.opacity = Math.random();
+
       document.body.appendChild(dot);
       setTimeout(() => dot.remove(), 5000);
-    }, 200);
+    }
 
-    // Phát/tạm dừng nhạc
+    setInterval(createDot, 150);
+
+    const music = document.getElementById("bg-music");
+    const button = document.querySelector(".music-btn");
+
     function toggleMusic() {
-      const music = document.getElementById("bg-music");
       if (music.paused) {
         music.play();
+        button.textContent = "Tạm dừng nhạc";
       } else {
         music.pause();
+        button.textContent = "Phát nhạc";
       }
     }
+
+    document.body.addEventListener('click', function autoPlayOnce() {
+      music.play();
+      button.textContent = "Tạm dừng nhạc";
+      document.body.removeEventListener('click', autoPlayOnce);
+    });
+
+    const fpsElement = document.querySelector(".fps");
+    function updateFPS() {
+      const fps = (Math.random() * (144.9 - 59.8) + 59.8).toFixed(1);
+      fpsElement.textContent = `FPS: ${fps}`;
+    }
+    setInterval(updateFPS, 300);
   </script>
 </body>
 </html>
